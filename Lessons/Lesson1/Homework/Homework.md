@@ -11,10 +11,12 @@ To complete the task answer following questions save your changes and commit to 
    **Answer:** ked chceme nieco dorobit k cudziemu projektu, nejak k nemu prispiet, vylepsit ho, a pod, fork vytvori "nasu" osobnu kopiu tohto projektu, ktoru si mozme upravovat ako chceme, to neovplyvni povodny subor
 
 4. **Question:** What command is used for sending selected changes to local repository?  
-   **Answer:** Push
+   **Answer:** git commit (podla "Then there is also your public repository, where you move stuff from your staging using git commit.") , alebo 
+               Pull (v R-studio podla  "Now you need to make sure your local folder contains all your comments. Open R studio and synchronize with your online version. Pull changes to your local repository. Then open Notes.md from project on your computer in R. Can you see the changes?") 
 
 5. **Question:** What command is used for publishing changes for others?  
-   **Answer:** Commit changes
+   **Answer:** git push
 
 6. **Question:** How can you compare forks and apply changes to other's fork?  
-   **Answer:** Pull request
+   **Answer:** My fork - Insights - Forks/Network 
+	               by pull request
