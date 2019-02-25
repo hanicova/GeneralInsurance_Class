@@ -2,7 +2,7 @@
 To complete the task answer following questions save your changes and commit to your fork. Create Pull request to main repository (one you forked from) to send this for check. You will earn one point for each meaningful answer plus one for sucessfull pull request.
 
 1. **Question:** What's the main difference between Life and General Insurance?  
-   **Answer:** zivotne je dlhodobejsie na udalost ktora nastane cca raz za zivot, napr smrt. nezivotne je kratkodobejsie, napr na rok a kazdy rok sa moze obnovit, na udalosti ktore nastavaju casto, napr autohavaria
+   **Answer:** zivotne je dlhodobejsie (dlhsie ako na rok) na udalost ktora nastane cca raz za zivot, napr smrt. nezivotne je kratkodobejsie (na rok) a kazdy rok sa moze obnovit, na udalosti ktore nastavaju casto, napr autohavaria
 
 2. **Question:** What's your GitHub ID?  
    **Answer:** #47779306
