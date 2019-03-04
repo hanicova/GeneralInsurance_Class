@@ -25,7 +25,8 @@ dt_KPI_raw %>%
   ggplot(aes(x = reorder(Year, UWR), y = UWR)) + 
   geom_col()
 
-# 
+# neviem preco, ale neviem z mojho R-studia push-nut kod na git, ked som ho sem vlozila a v R-studiu som dala pull vsetko zbehlo ako malo, 
+# ked som nasledne spravila zmeny v R-studiu a dala push, vypisalo mi ze je vsetko up to date, ale na gite ziadne zmeny nespravil
 # 
 
 
