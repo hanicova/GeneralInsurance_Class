@@ -4,24 +4,27 @@
 
 ## Code
 # 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
+
+library(dplyr)
+library(ggplot2)
+
+dt_KPI_raw <- read.csv("data/lesson2_KPI.csv")
+
+dt_KPI_raw %>% 
+  mutate(Premium = ifelse(Premium < 0, 0, Premium))
+
+dt_KPI_raw %>%  mutate(UWR = Premium - Expenses - Losses) %>% 
+  group_by(Year) %>% 
+  summarize(UWR = sum(UWR, na.rm = TRUE)) %>% 
+  arrange(UWR)
+
+dt_KPI_raw %>% 
+  mutate(UWR = Premium - Expenses - Losses) %>% 
+  group_by(Year) %>% 
+  summarize(UWR = sum(UWR, na.rm = TRUE)) %>% 
+  ggplot(aes(x = reorder(Year, UWR), y = UWR)) + 
+  geom_col()
+
 # 
 # 
 
@@ -30,5 +33,7 @@
 
 # Your Explanation about analysis:
 # 
+Vycistenie dat -> roztriedenie po rokoch -> porovnanie s Underwriting Result
+Najmensie UWR v roku 2015 -> 2015 najhorsi rok
 # 
 # 
