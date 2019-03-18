@@ -164,7 +164,20 @@ _If you are now comforatble with what this does, try doing the same, but using a
 Hint: Sum Paid and Case together to come up with the final claims estimates (the Incurred claims)
 
 ```{r}
-
+#Large
+CaseAndPaid_HH_lrg <- dt_PaidCase %>% filter( Business == "House" , ClaimSize=="Large") 
+CaseAndPaid_HH_lrg_triangle <- CaseAndPaid_HH_lrg %>% as.triangle(origin="ay", dev="dy", value="SumOfamount")
+CaseAndPaid_HH_lrg_triangle
+plot(CaseAndPaid_HH_lrg_triangle)
+plot(predict(chainladder(CaseAndPaid_HH_lrg_triangle)))
+ata(CaseAndPaid_HH_lrg_triangle)
+#Small
+CaseAndPaid_HH_sml <- dt_PaidCase %>% filter( Business == "House" , ClaimSize=="Small") 
+CaseAndPaid_HH_sml_triangle <- CaseAndPaid_HH_sml %>% as.triangle(origin="ay", dev="dy", value="SumOfamount")
+CaseAndPaid_HH_sml_triangle
+plot(CaseAndPaid_HH_sml_triangle)
+plot(predict(chainladder(CaseAndPaid_HH_sml_triangle)))
+ata(CaseAndPaid_HH_sml_triangle)
 ```
 
 
