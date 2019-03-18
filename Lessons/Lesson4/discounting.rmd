@@ -136,6 +136,7 @@ _Now repeat for all types of buiness and sizes of claims. Compare the findings..
 
 ```{r}
 
+##HOUSE
 # Case & Small
 Case_HH_sml <- dt_PaidCase %>% filter(dataset_type=="CASE" , Business == "House" , ClaimSize=="Small") 
 Case_HH_sml_triangle <- Case_HH_sml %>% as.triangle(origin="ay", dev="dy", value="SumOfamount")
@@ -143,7 +144,6 @@ Case_HH_sml_triangle
 plot(Case_HH_sml_triangle)
 plot(predict(chainladder(Case_HH_sml_triangle)))
 ata(Case_HH_sml_triangle)
-
 # Case & Large
 Case_HH_lrg <- dt_PaidCase %>% filter(dataset_type=="CASE" , Business == "House" , ClaimSize=="Large") 
 Case_HH_lrg_triangle <- Case_HH_lrg %>% as.triangle(origin="ay", dev="dy", value="SumOfamount")
@@ -151,7 +151,6 @@ Case_HH_lrg_triangle
 plot(Case_HH_lrg_triangle)
 plot(predict(chainladder(Case_HH_lrg_triangle)))
 ata(Case_HH_lrg_triangle)
-
 # Paid & Large
 Paid_HH_lrg <- dt_PaidCase %>% filter(dataset_type=="PAID" , Business == "House" , ClaimSize=="Large") 
 Paid_HH_lrg_triangle <- Paid_HH_lrg %>% as.triangle(origin="ay", dev="dy", value="SumOfamount")
@@ -160,12 +159,36 @@ plot(Paid_HH_lrg_triangle)
 plot(predict(chainladder(Paid_HH_lrg_triangle)))
 ata(Paid_HH_lrg_triangle)
 
+##3rd PARTY
+# Case & Small
+Case_P_sml <- dt_PaidCase %>% filter(dataset_type=="CASE" , Business == "3rd Party" , ClaimSize=="Small") 
+Case_P_sml_triangle <- Case_P_sml %>% as.triangle(origin="ay", dev="dy", value="SumOfamount")
+Case_P_sml_triangle
+plot(Case_P_sml_triangle)
+plot(predict(chainladder(Case_P_sml_triangle)))
+ata(Case_P_sml_triangle)
+# Case & Large
+Case_P_lrg <- dt_PaidCase %>% filter(dataset_type=="CASE" , Business == "3rd Party" , ClaimSize=="Large") 
+Case_P_lrg_triangle <- Case_P_lrg %>% as.triangle(origin="ay", dev="dy", value="SumOfamount")
+Case_P_lrg_triangle
+plot(Case_P_lrg_triangle)
+plot(predict(chainladder(Case_P_lrg_triangle)))
+ata(Case_P_lrg_triangle)
+# Paid & Large
+Paid_P_lrg <- dt_PaidCase %>% filter(dataset_type=="PAID" , Business == "3rd Party" , ClaimSize=="Large") 
+Paid_P_lrg_triangle <- Paid_P_lrg %>% as.triangle(origin="ay", dev="dy", value="SumOfamount")
+Paid_P_lrg_triangle
+plot(Paid_P_lrg_triangle)
+plot(predict(chainladder(Paid_P_lrg_triangle)))
+ata(Paid_P_lrg_triangle)
+
 ```
 
 _If you are now comforatble with what this does, try doing the same, but using additional information: The Case data!_
 Hint: Sum Paid and Case together to come up with the final claims estimates (the Incurred claims)
 
 ```{r}
+##HOUSE
 #Large
 CaseAndPaid_HH_lrg <- dt_PaidCase %>% filter( Business == "House" , ClaimSize=="Large") 
 CaseAndPaid_HH_lrg_triangle <- CaseAndPaid_HH_lrg %>% as.triangle(origin="ay", dev="dy", value="SumOfamount")
@@ -180,6 +203,22 @@ CaseAndPaid_HH_sml_triangle
 plot(CaseAndPaid_HH_sml_triangle)
 plot(predict(chainladder(CaseAndPaid_HH_sml_triangle)))
 ata(CaseAndPaid_HH_sml_triangle)
+
+##3rd PARTY
+#Large
+CaseAndPaid_P_lrg <- dt_PaidCase %>% filter( Business == "3rd Party" , ClaimSize=="Large") 
+CaseAndPaid_P_lrg_triangle <- CaseAndPaid_HH_lrg %>% as.triangle(origin="ay", dev="dy", value="SumOfamount")
+CaseAndPaid_P_lrg_triangle
+plot(CaseAndPaid_P_lrg_triangle)
+plot(predict(chainladder(CaseAndPaid_P_lrg_triangle)))
+ata(CaseAndPaid_P_lrg_triangle)
+#Small
+CaseAndPaid_P_sml <- dt_PaidCase %>% filter( Business == "3rd Party" , ClaimSize=="Small") 
+CaseAndPaid_P_sml_triangle <- CaseAndPaid_P_sml %>% as.triangle(origin="ay", dev="dy", value="SumOfamount")
+CaseAndPaid_P_sml_triangle
+plot(CaseAndPaid_P_sml_triangle)
+plot(predict(chainladder(CaseAndPaid_P_sml_triangle)))
+ata(CaseAndPaid_P_sml_triangle)
 ```
 
 
