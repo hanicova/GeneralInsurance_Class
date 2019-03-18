@@ -159,6 +159,10 @@ plot(Paid_HH_lrg_triangle)
 plot(predict(chainladder(Paid_HH_lrg_triangle)))
 ata(Paid_HH_lrg_triangle)
 
+## Case majú rýchlu klesajúcu tendenciu, Large vyraznejšiu ako Small
+## Paid sú pomerne vyrovnané
+
+
 ##3rd PARTY
 # Case & Small
 Case_P_sml <- dt_PaidCase %>% filter(dataset_type=="CASE" , Business == "3rd Party" , ClaimSize=="Small") 
@@ -174,6 +178,13 @@ Case_P_lrg_triangle
 plot(Case_P_lrg_triangle)
 plot(predict(chainladder(Case_P_lrg_triangle)))
 ata(Case_P_lrg_triangle)
+# Paid & Small
+Paid_P_sml <- dt_PaidCase %>% filter(dataset_type=="PAID" , Business == "3rd Party" , ClaimSize=="Small") 
+Paid_P_sml_triangle <- Paid_P_sml %>% as.triangle(origin="ay", dev="dy", value="SumOfamount")
+Paid_P_sml_triangle
+plot(Paid_P_sml_triangle)
+plot(predict(chainladder(Paid_P_sml_triangle)))
+ata(Paid_P_sml_triangle)
 # Paid & Large
 Paid_P_lrg <- dt_PaidCase %>% filter(dataset_type=="PAID" , Business == "3rd Party" , ClaimSize=="Large") 
 Paid_P_lrg_triangle <- Paid_P_lrg %>% as.triangle(origin="ay", dev="dy", value="SumOfamount")
@@ -181,6 +192,10 @@ Paid_P_lrg_triangle
 plot(Paid_P_lrg_triangle)
 plot(predict(chainladder(Paid_P_lrg_triangle)))
 ata(Paid_P_lrg_triangle)
+
+## Case Small klesajú, Case Large skáču v niektorých rokoch viac ako v iných, ale vo všeobecnosti nevidím trend
+## Paid rastú Small výraznejšie ako Large
+
 
 ```
 
@@ -204,6 +219,9 @@ plot(CaseAndPaid_HH_sml_triangle)
 plot(predict(chainladder(CaseAndPaid_HH_sml_triangle)))
 ata(CaseAndPaid_HH_sml_triangle)
 
+##Large su vyrovnanejšie, Small viac "skáču"
+
+
 ##3rd PARTY
 #Large
 CaseAndPaid_P_lrg <- dt_PaidCase %>% filter( Business == "3rd Party" , ClaimSize=="Large") 
@@ -219,6 +237,8 @@ CaseAndPaid_P_sml_triangle
 plot(CaseAndPaid_P_sml_triangle)
 plot(predict(chainladder(CaseAndPaid_P_sml_triangle)))
 ata(CaseAndPaid_P_sml_triangle)
+
+#Large su dosť vyrovnaé, Small sa mi na začiatku zdaju dosť nepravidelné, nevidím nejaký trend, potom sa ale postupne objavuje podobnosť medzi jednotl. rokmi
 ```
 
 
