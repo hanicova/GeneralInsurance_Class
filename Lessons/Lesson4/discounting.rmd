@@ -104,6 +104,8 @@ _STEP 1: Take paid data for House business and Small claim size_
 
 ```{r}
 Paid_HH_sml <- dt_PaidCase %>% filter(...) 
+Paid_HH_sml <- dt_PaidCase %>% filter(dataset_type=="PAID" , Business == "House" , ClaimSize=="Small") 
+
 ```
 
 _STEP 2: Now convert the standard table into a triangle_
