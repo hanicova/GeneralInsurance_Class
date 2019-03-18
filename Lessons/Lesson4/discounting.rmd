@@ -110,25 +110,46 @@ _STEP 2: Now convert the standard table into a triangle_
 Hint: %>% as.triangle(...)
 
 ```{r}
-
+Paid_HH_sml_triangle <- Paid_HH_sml %>% as.triangle(origin="ay", dev="dy", value="SumOfamount")
 ```
 
 _STEP 3: Now start plotting things to see more information_
 
 ```{r}
-
+Paid_HH_sml_triangle
+plot(Paid_HH_sml_triangle)
 ```
 
 _STEP 4: And get the aging factors and some other stat's out to see more details_
 Hint: ata(...)
 
 ```{r}
+ata(GenIns)
 
 ```
 
 _Now repeat for all types of buiness and sizes of claims. Compare the findings..._
 
 ```{r}
+
+# Case & Small
+Case_HH_sml <- dt_PaidCase %>% filter(dataset_type=="CASE" , Business == "House" , ClaimSize=="Small") 
+Case_HH_sml_triangle <- Case_HH_sml %>% as.triangle(origin="ay", dev="dy", value="SumOfamount")
+Case_HH_sml_triangle
+plot(Case_HH_sml_triangle)
+plot(predict(chainladder(Case_HH_sml_triangle)))
+# Case & Large
+Case_HH_lrg <- dt_PaidCase %>% filter(dataset_type=="CASE" , Business == "House" , ClaimSize=="Large") 
+Case_HH_lrg_triangle <- Case_HH_lrg %>% as.triangle(origin="ay", dev="dy", value="SumOfamount")
+Case_HH_lrg_triangle
+plot(Case_HH_lrg_triangle)
+plot(predict(chainladder(Case_HH_lrg_triangle)))
+# Paid & Large
+Paid_HH_lrg <- dt_PaidCase %>% filter(dataset_type=="CASE" , Business == "House" , ClaimSize=="Large") 
+Paid_HH_lrg_triangle <- Paid_HH_lrg %>% as.triangle(origin="ay", dev="dy", value="SumOfamount")
+Paid_HH_lrg_triangle
+plot(Paid_HH_lrg_triangle)
+plot(predict(chainladder(Paid_HH_lrg_triangle)))
 
 ```
 
