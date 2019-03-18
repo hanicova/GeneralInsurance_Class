@@ -245,6 +245,24 @@ ata(CaseAndPaid_P_sml_triangle)
 ### Short or Long tail
 In insurance this means how fast is the data fully developed. The age-to-age factors help you understand exactly this. What would the age-to-age factors look like to make the business short/long tail? Are the lines of business in the exercise above short or long tailed? Try to come up with the meant payment term (weighted average of the duration until the claim is paid)
 
+##HOUSE
+CaseAndPaid_HH_smlANDlarge <- dt_PaidCase %>% filter(Business == "House") 
+CaseAndPaid_HH_smlANDlarge_triangle <- CaseAndPaid_HH_smlANDlarge %>% as.triangle(origin="ay", dev="dy", value="SumOfamount")
+CaseAndPaid_HH_smlANDlarge_triangle
+plot(CaseAndPaid_HH_smlANDlarge_triangle)
+plot(predict(chainladder(CaseAndPaid_HH_smlANDlarge_triangle)))
+
+##3rd PARTY 
+CaseAndPaid_P_smlANDlarge <- dt_PaidCase %>% filter(Business == "3rd Party") 
+CaseAndPaid_P_smlANDlarge_triangle <- CaseAndPaid_P_smlANDlarge %>% as.triangle(origin="ay", dev="dy", value="SumOfamount")
+CaseAndPaid_P_smlANDlarge_triangle
+plot(CaseAndPaid_P_smlANDlarge_triangle)
+plot(predict(chainladder(CaseAndPaid_P_smlANDlarge_triangle)))
+
+#short tail sú vyrovnané pomerne rýchlo, narozdiel od toho ale long tail sa vyrovnávajú dlhšie a aj "náklady" sa časom môžu výraznejšie meniť ako v short tail
+#House ma viac short tail ako 3rd Party, tam je to viac long tail
+
+
 So hopefully by this time you know how the losses were calculated for you to use in previous class...
 
 
@@ -253,6 +271,14 @@ There are a couple of different types of business in the data from previous less
 What do you think, how long are the average delays in payments? Set up a table, that will 
 _show your assumptions and commit it to your git repository._
 
+ata(CaseAndPaid_P_smlANDlarge_triangle)
+ata(CaseAndPaid_HH_smlANDlarge_triangle)
+ROZDIEL1 <- ata(CaseAndPaid_HH_smlANDlarge_triangle) - ata(CaseAndPaid_P_smlANDlarge_triangle)
+ROZDIEL1
+plot(ROZDIEL1)
+ROZDIEL2 <- ata(CaseAndPaid_P_smlANDlarge_triangle) - ata(CaseAndPaid_HH_smlANDlarge_triangle)
+ROZDIEL2
+plot(ROZDIEL2)
 
 ### Discounting  losses
 It is very unlikely, that we incur the whole loss on the *very first day*. This allows the insurance company to *invest* the premium received and earn som interest on it. So one way of thinking about our previous example would be to think about *the future value of money* collected at the time of the claim. In reality we need to know the answers now, so *discounting the losses* is more practical then earning interest on expenses.
