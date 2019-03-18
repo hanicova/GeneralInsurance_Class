@@ -118,6 +118,8 @@ _STEP 3: Now start plotting things to see more information_
 ```{r}
 Paid_HH_sml_triangle
 plot(Paid_HH_sml_triangle)
+plot(predict(chainladder(Paid_HH_sml_triangle)))
+
 ```
 
 _STEP 4: And get the aging factors and some other stat's out to see more details_
@@ -125,7 +127,7 @@ Hint: ata(...)
 
 ```{r}
 ata(GenIns)
-
+ata(Paid_HH_sml_triangle)
 ```
 
 _Now repeat for all types of buiness and sizes of claims. Compare the findings..._
@@ -138,18 +140,23 @@ Case_HH_sml_triangle <- Case_HH_sml %>% as.triangle(origin="ay", dev="dy", value
 Case_HH_sml_triangle
 plot(Case_HH_sml_triangle)
 plot(predict(chainladder(Case_HH_sml_triangle)))
+ata(Case_HH_sml_triangle)
+
 # Case & Large
 Case_HH_lrg <- dt_PaidCase %>% filter(dataset_type=="CASE" , Business == "House" , ClaimSize=="Large") 
 Case_HH_lrg_triangle <- Case_HH_lrg %>% as.triangle(origin="ay", dev="dy", value="SumOfamount")
 Case_HH_lrg_triangle
 plot(Case_HH_lrg_triangle)
 plot(predict(chainladder(Case_HH_lrg_triangle)))
+ata(Case_HH_lrg_triangle)
+
 # Paid & Large
 Paid_HH_lrg <- dt_PaidCase %>% filter(dataset_type=="CASE" , Business == "House" , ClaimSize=="Large") 
 Paid_HH_lrg_triangle <- Paid_HH_lrg %>% as.triangle(origin="ay", dev="dy", value="SumOfamount")
 Paid_HH_lrg_triangle
 plot(Paid_HH_lrg_triangle)
 plot(predict(chainladder(Paid_HH_lrg_triangle)))
+ata(Paid_HH_lrg_triangle)
 
 ```
 
