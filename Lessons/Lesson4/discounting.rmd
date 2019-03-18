@@ -153,7 +153,7 @@ plot(predict(chainladder(Case_HH_lrg_triangle)))
 ata(Case_HH_lrg_triangle)
 
 # Paid & Large
-Paid_HH_lrg <- dt_PaidCase %>% filter(dataset_type=="CASE" , Business == "House" , ClaimSize=="Large") 
+Paid_HH_lrg <- dt_PaidCase %>% filter(dataset_type=="PAID" , Business == "House" , ClaimSize=="Large") 
 Paid_HH_lrg_triangle <- Paid_HH_lrg %>% as.triangle(origin="ay", dev="dy", value="SumOfamount")
 Paid_HH_lrg_triangle
 plot(Paid_HH_lrg_triangle)
