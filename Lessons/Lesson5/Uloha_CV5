@@ -10,3 +10,15 @@ dt_pol_w_claims <- dt_pol_w_claims %>% mutate(Time_Exposure = lubridate::dmy(Dt_
 dt_pol_w_claims <- dt_pol_w_claims %>% mutate(Ult_Loss = Paid + Reserves,Burning_Cost = ifelse(is.na(Ult_Loss), 0,  Ult_Loss / as.integer(Time_Exposure)))
 dt_pol_w_claims %>% filter(!is.na(Paid)) %>% select(Paid, Reserves, Ult_Loss, Burning_Cost) %>% head()
 
+#1a
+# vek som vybrala, lebo ocakavam ze mladi vodici sa budu spravat inak ako stari a to sa nejak prejavi aj v datach
+summary(dt_pol_w_claims$D_age)
+
+dt_pol_w_claims %>% ggplot(aes(y = Burning_Cost, x = D_age)) + geom_jitter()
+# najvacsie burning costs su okolo 50tky, moze to byt tym ze rodicia davaju auta svojim detom, ako sme spominali na prednaske
+# nerozumiem uplne preco mame data pre ludi nad 100 rokov... mozno deti/ vnucata nechali poistky po rodicoch/ prarodicoch
+
+dt_pol_w_claims %>% group_by(D_age) %>% 
+  summarize(BC_avg = mean(Burning_Cost, na.rm = TRUE), BC_median = median(Burning_Cost, na.rm = TRUE), cnt = n())%>%arrange(desc(BC_avg))
+
+dt_pol_w_claims %>% ggplot(aes(y = Burning_Cost, x = D_age)) + geom_boxplot() + ylim(0,100)
