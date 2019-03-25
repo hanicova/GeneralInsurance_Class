@@ -18,7 +18,11 @@ dt_pol_w_claims %>% ggplot(aes(y = Burning_Cost, x = D_age)) + geom_jitter()
 # najvacsie burning costs su okolo 50tky, moze to byt tym ze rodicia davaju auta svojim detom, ako sme spominali na prednaske
 # nerozumiem uplne preco mame data pre ludi nad 100 rokov... mozno deti/ vnucata nechali poistky po rodicoch/ prarodicoch
 
-dt_pol_w_claims %>% group_by(D_age) %>% 
+dt_pol_w_claims %>% filter(Burning_Cost != 0) %>% group_by(D_age) %>% 
   summarize(BC_avg = mean(Burning_Cost, na.rm = TRUE), BC_median = median(Burning_Cost, na.rm = TRUE), cnt = n())%>%arrange(desc(BC_avg))
+# najvyssi priemer je vo veku 60rokov, okrem toho su relativne vysoke priemery aj v 65 a 76 rokoch
+# mediany su vysoke v 69 a 72 rokoch
+# nesulad medzi priemermi a medianmi je pravdepodobne sposobeny roznym poctom dat pre rozne vekove skupiny
 
 dt_pol_w_claims %>% ggplot(aes(y = Burning_Cost, x = D_age)) + geom_boxplot() + ylim(0,100)
+
