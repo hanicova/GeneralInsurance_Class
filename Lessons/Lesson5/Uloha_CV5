@@ -27,3 +27,19 @@ dt_pol_w_claims %>% filter(Burning_Cost != 0) %>% group_by(D_age) %>%
 dt_pol_w_claims %>% ggplot(aes(y = Burning_Cost, x = D_age)) + geom_boxplot() + ylim(0,100)
 dt_pol_w_claims %>% ggplot(aes(y = D_age , x = Burning_Cost)) + geom_boxplot() + ylim(0,100)
 #neviem uplne interpretovat, vyzera to ze je tam prilis vela outlierov, skusila som teda prehodit osi, tam to vyzera o nieco lepsie
+
+#1b
+# neviem co su skratky C / S, ale chcela som vediet ci na to dokazem prijst pri analyze dat
+summary(dt_pol_w_claims$Customer_Type)
+
+dt_pol_w_claims %>% ggplot(aes(y = Burning_Cost, x = Customer_Type)) + geom_jitter()
+# z grafu vidime, ze C maju o nieco vyssie burning costs ako S
+# S nemaju ziadnych outlierov, narozdiel od C
+
+dt_pol_w_claims %>% filter(Burning_Cost != 0) %>% group_by(Customer_Type) %>%
+  summarise(BC_avg = mean(Burning_Cost, na.rm  = TRUE), BC_median = median(Burning_Cost, na.rm = TRUE), cnt = n()) %>% 
+  arrange(desc(BC_avg))
+# C maju vyssi priemer co je pravdepodobne sposobene prave outliermi, mediany su velmi podobne
+
+dt_pol_w_claims %>% ggplot(aes(y = Burning_Cost, x = Customer_Type)) + geom_boxplot() + ylim(0,100)
+# z boxplotu to vyzera ze aj skupina C aj S ma vela outlierov
