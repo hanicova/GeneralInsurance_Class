@@ -43,3 +43,16 @@ dt_pol_w_claims %>% filter(Burning_Cost != 0) %>% group_by(Customer_Type) %>%
 
 dt_pol_w_claims %>% ggplot(aes(y = Burning_Cost, x = Customer_Type)) + geom_boxplot() + ylim(0,100)
 # z boxplotu to vyzera ze aj skupina C aj S ma vela outlierov
+
+#2
+#GLM
+GLMmodel <- glm(data = dt_pol_w_claims %>% filter(Burning_Cost != 0, Burning_Cost < 100),
+                formula = Burning_Cost ~ D_age + Customer_Type,
+                family = Gamma())
+summary(GLMmodel)
+# na hladine vyznamnosti 5% su oba stat vyznamne
+# je prediktivny
+# chcelo by to nejak vyfiltrovat outlierov v D_age, ti tam sposobuju komplikacie
+# data Customer_Type mi prijdu lepsie
+# model by sa dal este zlepsit zakomponovanim viacerych faktorov
+# bolo by treba ustrazit ktore faktory maju skutocnu pridanu hodnotu, a ktore len zbytocne komplikuju model
