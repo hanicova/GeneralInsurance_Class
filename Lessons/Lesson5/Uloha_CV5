@@ -1,0 +1,12 @@
+library(dplyr)
+library(ggplot2)
+library(lubridate)
+dt_Policy <- read.csv("./Data/lesson5_PolicyHistory.csv") %>% distinct(NrPolicy, NrObject, .keep_all = TRUE) 
+dt_Claims <- read.csv("./Data/lesson5_Claims.csv") %>% distinct(NrClaim, .keep_all = TRUE)
+dt_pol_w_claims <- left_join(dt_Policy, dt_Claims, by = c("NrPolicy", "NrObject"))
+head(dt_pol_w_claims)
+dt_pol_w_claims %>% filter(!is.na(Paid)) %>% select(Paid) %>% arrange(desc(Paid)) %>% head()
+dt_pol_w_claims <- dt_pol_w_claims %>% mutate(Time_Exposure = lubridate::dmy(Dt_Exp_End) - lubridate::dmy(Dt_Exp_Start))
+dt_pol_w_claims <- dt_pol_w_claims %>% mutate(Ult_Loss = Paid + Reserves,Burning_Cost = ifelse(is.na(Ult_Loss), 0,  Ult_Loss / as.integer(Time_Exposure)))
+dt_pol_w_claims %>% filter(!is.na(Paid)) %>% select(Paid, Reserves, Ult_Loss, Burning_Cost) %>% head()
+
